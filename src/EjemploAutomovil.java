@@ -8,7 +8,7 @@ public class EjemploAutomovil {
 
         Automovil subaru = new Automovil("Subaru", "Impreza");
         subaru.setCilindrada(2.0);
-        subaru.setColor("Azul");
+        subaru.setColor("Azul y lo mas bonito");
 
         Automovil mazda = new Automovil("Mazda", "BT", "Rojo");
         mazda.setCilindrada(3.0);
