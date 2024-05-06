@@ -20,7 +20,7 @@ public class EjemploAutomovil {
         Date fecha = new Date();
 
         System.out.println("son iguales ?= "+ (nissan == nissan2));
-        System.out.println("son iguales utilizando equals custom override= "+ (nissan.equals(nissan2)));
+        System.out.println("son iguaasdles utilizando equals custom override= "+ (nissan.equals(nissan2)));
         System.out.println(subaru.verDetalle());
         System.out.println(mazda.verDetalle());
         System.out.println(nissan.verDetalle());
