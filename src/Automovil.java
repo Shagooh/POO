@@ -11,35 +11,60 @@ public class Automovil {
     // Metodos de operacion
     // Metodos para sobrescribir o reeplazar de la clase padre
 
+    private int id;
     private String fabricante;
     private String modelo;
-    private String color = "Gris";
+    //private String color = COLOR_GRIS;
+    private Color color = Color.GRIS; // Pasamos a tipo Color, utilizando el Enumerator
     private double cilindrada;
     private int capacidadEstanque = 40;
+
+    private static Color colorPatente = Color.NARANJO; // Lo mismo que en Color
+    private static int capacidadEstanqueStatic = 30;
+    private static int ultimoId;
+
+    public static final Integer VELOCIDAD_MAX_CARRETERA = 120;
+    public static final int VELOCIDAD_MAX_CIUDAD = 60;
+
+    public static final String COLOR_ROJO = "Rojo";
+    public static final String COLOR_AMARILLO = "Amarillo";
+    public static final String COLOR_AZUL = "Azul";
+    public static final String COLOR_BLANCO = "Blanco";
+    public static final String COLOR_GRIS = "Gris oscuro";
 
     // Constructor explicito
 
     public Automovil() {
+        this.id = ++ ultimoId;
     }
 
     public Automovil(String fabricante, String modelo) {
+        this();
         this.fabricante = fabricante;
         this.modelo = modelo;
     }
 
-    public Automovil(String fabricante, String modelo, String color) {
+    public Automovil(String fabricante, String modelo, Color color) {
         this(fabricante, modelo); // llama al constructor del metodo anterior: el q tiene fabricante y modelo
         this.color = color; // color es propio de este constructor
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada) {
+    public Automovil(String fabricante, String modelo, Color color, double cilindrada) {
         this(fabricante, modelo, color); // this hace referencia a un constructor de la misma clase y pasa los parametros reutilizandolos
         this.cilindrada = cilindrada;
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadEstanque) {
+    public Automovil(String fabricante, String modelo, Color color, double cilindrada, int capacidadEstanque) {
         this(fabricante, modelo, color, cilindrada);
         this.capacidadEstanque = capacidadEstanque;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // Private -> solo se puede acceder a estos atributos dentro de la misma clase
@@ -62,11 +87,11 @@ public class Automovil {
         this.modelo = modelo;
     }
 
-    public String getColor() {
-        return this.modelo;
+    public Color getColor() {
+        return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -86,10 +111,27 @@ public class Automovil {
         this.capacidadEstanque = capacidadEstanque;
     }
 
+    public static int getCapacidadEstanqueStatic() {
+        return capacidadEstanqueStatic;
+    }
+
+    public static void setCapacidadEstanqueStatic(int capacidadEstanqueStatic) {
+        Automovil.capacidadEstanqueStatic = capacidadEstanqueStatic;
+    }
+
+    public static Color getColorPatente() {
+        return colorPatente;
+    }
+    public static void setColorPatente(Color colorPatente) {
+        Automovil.colorPatente = colorPatente;
+    }
+
     public String verDetalle() {
-        return "auto.fabricante = " + this.getFabricante() +
+        return "auto.id = " + this.id +
+                "\nauto.fabricante = " + this.getFabricante() +
                 "\nauto.modelo = " + getModelo() +
                 "\nauto.color = " + this.color +
+                "\nauto.patenteColor = " + colorPatente + // dentro de la clase, atributo estatico va sin el this... o tambien nombreclase.atributo -> Automovil.colorPatente
                 "\nauto.cilindrada = " + this.cilindrada;
     }
 
@@ -110,9 +152,16 @@ public class Automovil {
     public float calcularConsumo (int km, float porcentajeBencina) {
         return km /(capacidadEstanque*porcentajeBencina);
     }
+
     public float calcularConsumo (int km, int porcentajeBencina) {
         return km /(capacidadEstanque*(porcentajeBencina/100f));
     }
+
+    public static float calcularConsumoStatic(int km, int porcentajeBencina) { // usar contexto estatico
+        return km /(Automovil.capacidadEstanqueStatic * (porcentajeBencina/100f)); // Se puede usar capacidadEstanqueStatic por estar dentro de la clase,
+        // o tambien clase.atributoStatic = Automovil.capacidadEstanqueStatic
+    }
+
 
     @Override
     public boolean equals(Object obj) { // obj es lo q se pasa por argumento, lo que vamos a comparar con el objeto Automovil
@@ -127,6 +176,20 @@ public class Automovil {
                 && this.fabricante.equals(a.getFabricante())
                 && this.modelo.equals(a.getModelo()));
     }
+
+    @Override
+    public String toString() {
+        return this.id + ":" +
+                "Automovil{" +
+                "fabricante='" + fabricante + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", color='" + color + '\'' +
+                ", cilindrada=" + cilindrada +
+                ", capacidadEstanque=" + capacidadEstanque +
+                '}';
+    }
+
+
 
     //    // metodos o funciones -< comportamientos
 //    public String verDetalle() { // void o String seria el retorno

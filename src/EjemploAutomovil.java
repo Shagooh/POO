@@ -8,13 +8,13 @@ public class EjemploAutomovil {
 
         Automovil subaru = new Automovil("Subaru", "Impreza");
         subaru.setCilindrada(2.0);
-        subaru.setColor("Azul y lo mas bonito");
+        subaru.setColor(Color.BLANCO);
 
-        Automovil mazda = new Automovil("Mazda", "BT", "Rojo");
+        Automovil mazda = new Automovil("Mazda", "BT", Color.ROJO);
         mazda.setCilindrada(3.0);
 
-        Automovil nissan = new Automovil("Nissan", "Navara", "Gris", 5.0, 50);
-        Automovil nissan2 = new Automovil("Nissan", "Navara", "Gris", 5.0, 50);
+        Automovil nissan = new Automovil("Nissan", "Navara", Color.GRIS, 5.0, 50);
+        Automovil nissan2 = new Automovil("Nissan", "Navara", Color.GRIS, 5.0, 50);
 
         Automovil auto = new Automovil();
         Date fecha = new Date();
@@ -28,6 +28,8 @@ public class EjemploAutomovil {
         System.out.println(auto.equals(nissan));
         System.out.println(auto.equals(fecha)); // comparando distintos tipos
         //System.out.println(auto.equals(new String ("hola"))); // comparando distintos tipos
+        System.out.println(nissan); // por debajo hace el toString
+        System.out.println(nissan.toString());
 
         System.out.println(subaru.acelerar(3000));
         System.out.println(subaru.frenar());
