@@ -5,7 +5,7 @@ public enum Color {
     BLANCO("Blanco"),
     GRIS("Gris Oscuro"),
     NARANJO("Naranjo");
-    // El contenido de cada uno es el mismo... ROJO = ROJO
+    // El contenido de cada uno por defecto es el mismo... ROJO = ROJO
 
     private final String color;
 

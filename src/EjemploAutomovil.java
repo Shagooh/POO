@@ -3,18 +3,23 @@ import java.util.Date;
 public class EjemploAutomovil {
     public static void main(String[] args) {
         // TIP: ocultar estado (atributos) de la clase
-        // Se puede, si es que es necesario, implementar o no metodos para leer o modificar los atributos
-        // Leer -> get ... modificar -> set
 
+        Motor motorSubaru = new Motor(2.0, TipoMotor.BENCINA);
         Automovil subaru = new Automovil("Subaru", "Impreza");
-        subaru.setCilindrada(2.0);
+        subaru.setMotor(motorSubaru);
+        subaru.setEstanque(new Estanque()); // 40 por defecto en clase estanque
         subaru.setColor(Color.BLANCO);
 
-        Automovil mazda = new Automovil("Mazda", "BT", Color.ROJO);
-        mazda.setCilindrada(3.0);
+        Motor motorMazda = new Motor(3.0, TipoMotor.DIESEL);
+        Automovil mazda = new Automovil("Mazda", "BT", Color.ROJO, motorMazda);
+        mazda.setEstanque(new Estanque(45));
+        System.out.println("mazda.fabricante = " + mazda.getFabricante());
 
-        Automovil nissan = new Automovil("Nissan", "Navara", Color.GRIS, 5.0, 50);
-        Automovil nissan2 = new Automovil("Nissan", "Navara", Color.GRIS, 5.0, 50);
+        Automovil nissan = new Automovil("Nissan", "Navara", Color.GRIS,
+                new Motor(4.0, TipoMotor.DIESEL), new Estanque(50));
+
+        Automovil nissan2 = new Automovil("Nissan", "Navara", Color.GRIS,
+                new Motor(3.5, TipoMotor.BENCINA), new Estanque(50));
 
         Automovil auto = new Automovil();
         Date fecha = new Date();
